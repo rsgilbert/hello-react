@@ -4,38 +4,28 @@ import './App.css'
 
 function App() {
     return (
-        <Clock/>
+        <div>
+            <Toggle/>
+        </div>
     )
 }
 
-class Clock extends React.Component {
+class Toggle extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { date: new Date() }
+        this.state = { toggleOn: false }
+        this.handleClick = this.handleClick.bind(this)
     }
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        )
-    }
-    componentWillUnmount() {
-        clearInterval(this.timerID)
-    }
-    tick() {
-        this.setState({
-            date: new Date()
-        })
-    }
+    handleClick() {
+        this.setState(state => ({
+            toggleOn: !state.toggleOn
+        }))
+    } 
+
     render() {
-        return (
-            <div>
-                <h1>The Great Timer</h1>
-                <h2>{ this.state.date.toLocaleTimeString() }</h2>
-            </div>
-        )
+        return <button onClick={this.handleClick}>
+            { this.state.toggleOn ? "ON" : "OFF" }
+        </button>
     }
 }
-
-
 export default App
