@@ -40,3 +40,11 @@
     transform: rotate(360deg);
   }
 }
+
+.FancyBorder-blue {
+    color: darkblue
+}
+.Dialog-title {
+    font-weight: 100;
+    text-decoration: underline;
+}
