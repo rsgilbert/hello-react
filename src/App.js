@@ -1,30 +1,12 @@
 import React from 'react'
 import './App.css'
+import FilterableTable from './components/FilterableTable'
 
 function App() {
     return (
-      <WelcomeDialog />
+      <FilterableTable />
     )
 }
  
-function FancyBorder(props) {
-    return (
-        <div className={'FancyBorder FancyBorder-' + props.color}>
-            {props.children}
-        </div>
-    )
-}
 
-function WelcomeDialog() {
-    return (
-        <FancyBorder color="blue">
-            <h1 className="Dialog-title">
-                Welcome to my dialog
-            </h1>
-            <p className="Dialog-message">
-                How have you been
-            </p>
-        </FancyBorder>
-    )
-}
 export default App
