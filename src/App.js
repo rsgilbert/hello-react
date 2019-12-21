@@ -1,31 +1,28 @@
 import React from 'react'
 import './App.css'
 
-
+const unreadMessages = [
+    "Mary likes you",
+    "Solomon is a bright young man", 
+    "I love Predrosa",
+]
 function App() {
     return (
-        <div>
-            <Toggle/>
-        </div>
+       <Message unreadMessages={ unreadMessages }/> 
     )
 }
 
-class Toggle extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { toggleOn: false }
-        this.handleClick = this.handleClick.bind(this)
-    }
-    handleClick() {
-        this.setState(state => ({
-            toggleOn: !state.toggleOn
-        }))
-    } 
-
-    render() {
-        return <button onClick={this.handleClick}>
-            { this.state.toggleOn ? "ON" : "OFF" }
-        </button>
-    }
+function Message(props) {
+    const unreadMessageCount = props.unreadMessages.length
+    return <div>
+        <h4>Hello campuser,</h4>
+        { unreadMessageCount > 0 && 
+            <h2>
+                You have { unreadMessageCount } unread messages
+            </h2>
+        } 
+    </div>
 }
+
+
 export default App
