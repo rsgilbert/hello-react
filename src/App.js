@@ -1,74 +1,39 @@
 import React from 'react'
 import './App.css'
 
+const unreadMessages = [
+    "Mary likes you",
+    "Solomon is a bright young man", 
+    "I love Predrosa",
+]
+
+const listItemMessages = unreadMessages.map(
+    message => <li>{ message }</li>
+)
+
+function UnOrderedList(props) {
+    return (
+        <ul>{ props.listItems }</ul>
+    )
+}
 
 function App() {
     return (
-       <LoginControl /> 
-    )
-}
-function UserGreeting(props) {
-    return <h1>Welcome back!</h1>;
-  }
-  
-  function GuestGreeting(props) {
-    return <h1>Please sign up.</h1>;
-  }
-function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-      return <UserGreeting />;
-    }
-    return <GuestGreeting />;
-  }
-
-function LoginButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            Login
-        </button>
-    )
-}
-function LogoutButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            Logout
-        </button>
+       <Notifications unreadMessages={ unreadMessages }/> 
     )
 }
 
-class LoginControl extends React.Component {
-    constructor(props) {
-        super(props)
-        this.handleLoginClick = this.handleLoginClick.bind(this)
-        this.handleLogoutClick = this.handleLogoutClick.bind(this)
-        this.state = { isLoggedIn: false }
-    }
-    handleLoginClick() {
-        this.setState({ 
-            isLoggedIn: true
-        })
-    }
-    handleLogoutClick() {
-        this.setState({
-            isLoggedIn: false
-        })
-    }
-    render() {
-        const isLoggedIn = this.state.isLoggedIn
-        let button
-        if(isLoggedIn) {
-            button = <LogoutButton onClick={this.handleLogoutClick} />
-        } else {
-            button = <LoginButton onClick={this.handleLoginClick} />
-        }
-        return (
-            <div>
-                <Greeting isLoggedIn={isLoggedIn} />
-                { button }
-            </div>
-        )
-    }
+function Notifications(props) {
+    const unreadMessageCount = props.unreadMessages.length
+    return <div>
+        <h4>Hello campuser,</h4>
+        { unreadMessageCount > 0 && 
+            <h2>
+                You have { unreadMessageCount } unread messages
+            </h2>
+        } 
+        <UnOrderedList listItems={listItemMessages} />
+    </div>
 }
 
 
