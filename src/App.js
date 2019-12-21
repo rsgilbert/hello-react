@@ -1,40 +1,43 @@
 import React from 'react'
 import './App.css'
 
-const unreadMessages = [
-    "Mary likes you",
-    "Solomon is a bright young man", 
-    "I love Predrosa",
-]
-
-const listItemMessages = unreadMessages.map(
-    message => <li>{ message }</li>
-)
-
-function UnOrderedList(props) {
-    return (
-        <ul>{ props.listItems }</ul>
-    )
-}
-
 function App() {
     return (
-       <Notifications unreadMessages={ unreadMessages }/> 
+       <NameForm />
     )
 }
 
-function Notifications(props) {
-    const unreadMessageCount = props.unreadMessages.length
-    return <div>
-        <h4>Hello campuser,</h4>
-        { unreadMessageCount > 0 && 
-            <h2>
-                You have { unreadMessageCount } unread messages
-            </h2>
-        } 
-        <UnOrderedList listItems={listItemMessages} />
-    </div>
+class NameForm extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { value: '' }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    handleChange(event) {
+        this.setState({
+            value: event.target.value.toUpperCase()
+        })
+    }
+    handleSubmit(event) {
+        alert(`Name is submitted: state value: ${this.state.value}`)
+        event.preventDefault()
+    }
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input 
+                        type="text"
+                        value={this.state.value} 
+                        onChange={this.handleChange}
+                        />
+                </label>
+                <input type="submit" value="Submit Form"/>
+            </form>
+        )
+    }
 }
-
 
 export default App
