@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import FilterableTable from './components/FilterableTable'
+import FilterableTable from './hookComponents/FilterableTable'
 
 function App() {
     return (
