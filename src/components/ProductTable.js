@@ -8,6 +8,7 @@ class ProductTable extends React.Component {
         return (
             <div>
                 I am your ProductTable
+                {this.props.searchText}
             </div>
         )
     }
